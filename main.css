@@ -1,0 +1,61 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: LightBlue;
+	padding: 10px;
+	color: #555;
+	font-family: 'Roboto Mono', monospace;
+	text-align: center;
+}
+
+.start-button {
+	height: 50px;
+	padding: 15px;
+	display: block;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.start-button-title {
+	font-family: consolas;
+	font-size: 20px;
+}
+
+.container {
+	width: 600px;
+	border: 1px solid #eee;
+	padding: 30px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 30px;
+}
+
+.quiz-title {
+	text-align: center;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.question-number {
+	font-family: Georgia;
+}
+
+.question-content {
+	font-family: Calibri;
+}
+
+.question-form input[type="radio"] {
+	display: block;
+}
+
+.submit-button {
+	display: block;
+	height: 30px;
+	padding: 10px;
+	margin: auto;
+	font-family: consolas;
+	text-transform: uppercase;
+}

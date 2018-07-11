@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz App</title>
+	<meta name="description" content="Test your friends on your favorite subjects, or make a quiz as a study guide for an upcoming test!">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<h1>Quiz App</h1>
+		<p>Test your knowledge!</p>
+	</header>
+	<main>
+		<button class="start-button">
+			<span class="start-button-title">
+				Start the Quiz!
+			</span>
+		</button>
+
+		<div class="container">
+			<h2 class="quiz-title">Sky Color Quiz</h2>
+			<form class="question-form">
+				<label class="question-content" for="question">
+					<h3 class="question-number">Question 1</h3>
+					<p class="question-content">What color is the sky?</p>
+					<input type="radio" name="answer-choice" class="mc-question-choices" value="0" checked><label for="choice-0"> Brown </label>
+					<input type="radio" name="answer-choice" class="mc-question-choices" value="1"><label for="choice-1"> Green </label>
+					<input type="radio" name="answer-choice" class="mc-question-choices" value="2"><label for="choice-2"> Blue </label>
+					<input type="radio" name="answer-choice" class="mc-question-choices" value="3"><label for="choice-3"> White </label>
+					<input type="radio" name="answer-choice" class="mc-question-choices" value="4"><label for="choice-4"> Vermillion </label>
+				</label>
+				<button class="submit-button" type="submit">Submit</button>
+			</form>
+		</div>
+	</main>
+</body>
+</html>
