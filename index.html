@@ -3,25 +3,24 @@
 <html>
 <head>
 	<title>Quiz App</title>
-	<meta name="description" content="Test your friends on your favorite subjects, or make a quiz as a study guide for an upcoming test!">
+	<meta name="description" content="How much do you know about Avatar: The Last Airbender? Take this quiz to find out?">
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<h1>Quiz App</h1>
+		<h1>Avatar: The Last AirBender Quiz</h1>
 		<p>Test your knowledge!</p>
 	</header>
 	<main>
-		<h2 class="quiz-title">Sky Color Quiz</h2>
-		<button class="start-button">
+		<button class="js-start-button" type="button">
 			<span class="start-button-title">
 				Start the Quiz!
 			</span>
 		</button>
 
-		<div class="container">
-			<h2 class="quiz-title">Sky Color Quiz</h2>
+		<div class="js-container">
+			<h2 class="quiz-title">ATLA Quiz</h2>
 			<form class="question-form">
 				<label class="question-content" for="question">
 					<h3 class="question-number">Question 1</h3>
@@ -32,12 +31,14 @@
 					<input type="radio" name="answer-choice" class="mc-question-choices" value="3"><label for="choice-3"> White <br></label>
 					<input type="radio" name="answer-choice" class="mc-question-choices" value="4"><label for="choice-4"> Vermillion <br></label>
 				</label>
-				<button class="submit-button" type="submit">Submit</button>
+				<button class="submit-button" type="button">Submit</button>
 			</form>
 			<p class="question-count">Question 1 of 10</p>
 			<div class="correct-count correct">Correct: 0</div>
 			<div class="correct-count incorrect">Incorrect: 0</div>
 		</div>
 	</main>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="app.js"></script>
 </body>
 </html>

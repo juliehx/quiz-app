@@ -12,7 +12,11 @@ header {
 	margin-bottom: 50px;
 }
 
-.start-button {
+a {
+	text-decoration: none;
+}
+
+.js-start-button {
 	height: 50px;
 	padding: 15px;
 	display: block;
@@ -25,7 +29,7 @@ header {
 	font-size: 20px;
 }
 
-.container {
+.js-container {
 	width: 600px;
 	padding: 30px;
 	margin-top: 30px;
@@ -38,24 +42,20 @@ header {
 	border-radius: 10px;
 }
 
-.quiz-title {
+.quiz-title, .js-quiz-title {
 	text-align: center;
 	font-family: 'Roboto Mono', monospace;
 }
 
-.question-number {
+.question-number, .js-question-number {
 	font-family: Georgia;
 }
 
-.question-content {
+.question-content, .js-question-content {
 	font-family: Calibri;
 }
 
-/*.question-form input[type="radio"] {
-	display: block;
-}*/
-
-.submit-button {
+.submit-button, .js-submit-button {
 	display: block;
 	height: 30px;
 	padding: 10px;
@@ -64,7 +64,7 @@ header {
 	text-transform: uppercase;
 }
 
-.question-count {
+.question-count, .js-question-count {
 	text-align: center;
 	margin-top: 10px;
 	font-family: 'Roboto Mono', monospace;
@@ -72,7 +72,7 @@ header {
 	font-size: 12px;
 }
 
-.correct-count {
+.correct-count, .js-correct-count {
 	display:inline-block;
 	width: 49%;
 	margin-top: 15px;
