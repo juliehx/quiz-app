@@ -60,9 +60,11 @@ var checkAnswer = function(state, quiz, ans) {
 	var questionIndex = state.questionCount;
 	if(ans == quiz.correctAnswers[state.questionCount]) {
 		state.correct++;
+		return true;
 	}
 	else {
 		state.incorrect++;
+		return false;
 	}
 };
 
@@ -96,6 +98,21 @@ var updateProgress = function(state, incorElem, corElem) {
 	state.questionCount+=1;
 }
 
+// renders a message that is displayed when the user answers a question correctly
+
+var renderCorrectMsg = function(state, element) {
+	element.html('<p><b>Correct!</b></p><button class="js-next-button" type="button">Next Question</button>');
+}
+
+// renders a message that is displayed when the user answers a question incorrectly
+
+var renderIncorrectMsg = function(state, element, quiz, ans) {
+	var msg = '<p><b>Incorrect</b></p><p>You answered: ' + quiz.questions[state.questionCount-1].a[ans] + '</p>';
+	msg += '<p>The correct answer is: ' + quiz.questions[state.questionCount-1].a[quiz.correctAnswers[state.questionCount-1]] + '</p>';
+	msg += '<button class="js-next-button" type="button">Next Question</button>';
+	element.html(msg);
+}
+
 // renders the box containing the final score at the end of the quiz
 
 var renderFinish = function(state, element) {
@@ -126,17 +143,28 @@ $('.js-start-button').click(function(event) {
 
 // when the user clicks on the submit button
 // the answer is checked and the incorrect/correct/questionCount counters are updated
-// if the user has reached the last question and presses submit : 
-// 		the user is taken to a end of quiz message with their score
-//		clicking the refresh button will restart the quiz
-// else:
-// 		the user is shown the next question
+// if the user's answer is incorrect, a message with the correct answer is displayed
+// followed by a button to take the user to the next question
 
 $('.question-form').on('click', '.js-submit-button', function(event) {
 	event.preventDefault();
 	var answer = $("input[type='radio'][class='js-mc-question-choices']:checked").val();
-	checkAnswer(state, quiz, answer);
+	var correct = checkAnswer(state, quiz, answer);
 	updateProgress(state, $('.incorrect'), $('.correct'));
+	if(correct) {
+		renderCorrectMsg(state, $('.question-form'));
+	}
+	else {
+		renderIncorrectMsg(state, $('.question-form'), quiz, answer);
+	}
+});
+
+// when the user clicks the next button
+// if the user has reached the last question :
+// 		the user is shown their final score and button to retake the quiz
+// else the user is shown the next question
+
+$('.question-form').on('click', '.js-next-button', function(event) {
 	if(state.questionCount < 10) {
 		renderQuestion(state, quiz, $('.question-form'), $('.question-count'));
 	}
