@@ -55,7 +55,7 @@ a {
 	font-family: Calibri;
 }
 
-.submit-button, .js-submit-button, .js-refresh-button {
+.submit-button, .js-submit-button, .js-refresh-button, .js-next-button {
 	display: block;
 	height: 30px;
 	padding: 10px;
