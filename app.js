@@ -1,3 +1,5 @@
+// Stores the questions, answer choices, and correct answers for the quiz
+
 var quiz = {
 	questions: [
 		{
@@ -44,17 +46,15 @@ var quiz = {
 	correctAnswers: [2, 1, 0, 3, 4, 0, 3, 1, 1, 4]
 };
 
+// stores the current question the user is on, as well as the # of correct/incorrect answers
+
 var state = {
-	answers: [],
 	questionCount: 0,
 	incorrect: 0,
 	correct: 0
 };
 
-var addAnswer = function(state, ans) {
-	state.answers.push(ans);
-	state.questionCount++;
-};
+// checks the user's answer against the correct answer and updates the correct/incorrect counter
 
 var checkAnswer = function(state, quiz, ans) {
 	var questionIndex = state.questionCount;
@@ -66,13 +66,17 @@ var checkAnswer = function(state, quiz, ans) {
 	}
 };
 
+// renders the radio button answer choices in the HTML
+
 var renderChoices = function(questionIndex, state, quiz) {
 	var questionChoices = '';
 	for(var i = 0; i < quiz.questions[questionIndex].a.length; ++i) {
-		questionChoices += '<input type="radio" name="answer-choice" class="js-mc-question-choices" value="' + i + '"><label for="choice-' + i + '"> ' + quiz.questions[questionIndex].a[i] + '<br></label>';
+		questionChoices += '<input type="radio" name="answer-choice" class="js-mc-question-choices" value="' + i + '" checked><label for="choice-' + i + '"> ' + quiz.questions[questionIndex].a[i] + '<br></label>';
 	}
 	return questionChoices;
 };
+
+// renders the current question in the HTML
 
 var renderQuestion = function(state, quiz, element, progElem) {
 	var begin = '<label class="question-content" for="question">';
@@ -84,21 +88,33 @@ var renderQuestion = function(state, quiz, element, progElem) {
 	progElem.html("Question " + (state.questionCount+1) + " of 10");
 };
 
+// renders the correct/incorrect number of questions in the HTML
+
 var updateProgress = function(state, incorElem, corElem) {
 	incorElem.html("Incorrect: " + state.incorrect);
 	corElem.html("Correct: " + state.correct);
 	state.questionCount+=1;
 }
 
+// renders the box containing the final score at the end of the quiz
+
 var renderFinish = function(state, element) {
-	var congrats = '<h2 class="quiz-title">Congratulations!</h2>';
-	var msg = '<p>You scored <b>' + state.correct + '/10</b></p>';
-	var button = '<a href="/"><button class="js-submit-button" type="button">Retake Quiz</button></a>';
-	element.html(congrats+msg+button);
+	var msg = '';
+	if(state.correct >= 7) {
+		msg += '<h2 class="quiz-title">Congratulations!</h2>';
+	}
+	else {
+		msg += '<h2 class="quiz-title">Too bad...</h2>';
+	}
+	msg += '<p>You scored <b>' + state.correct + '/10</b></p>';
+	msg += '<button class="js-refresh-button" type="button">Retake Quiz</button>';
+	element.html(msg);
 }
 
 
 $('.js-container').hide();
+
+// when the big start button is clicked, renders the first question and shows the quiz to the users
 
 $('.js-start-button').click(function(event) {
 	event.preventDefault();
@@ -107,6 +123,14 @@ $('.js-start-button').click(function(event) {
 	$(this).hide();
 	$('.js-quiz-title').hide();
 });
+
+// when the user clicks on the submit button
+// the answer is checked and the incorrect/correct/questionCount counters are updated
+// if the user has reached the last question and presses submit : 
+// 		the user is taken to a end of quiz message with their score
+//		clicking the refresh button will restart the quiz
+// else:
+// 		the user is shown the next question
 
 $('.question-form').on('click', '.js-submit-button', function(event) {
 	event.preventDefault();
@@ -118,5 +142,9 @@ $('.question-form').on('click', '.js-submit-button', function(event) {
 	}
 	else {
 		renderFinish(state, $('.js-container'));
+		$('.js-container').on('click', '.js-refresh-button', function(event) {
+			event.preventDefault();
+			location.reload();
+		});
 	}
 });
